@@ -1,0 +1,29 @@
+services:
+  kotaemon:
+    image: ghcr.io/cinnamon/kotaemon:main-lite
+    container_name: kotaemon
+    hostname: kotaemon
+    build:
+      dockerfile: Dockerfile
+      context: .
+      # build to the stage named dev
+      # target: dev
+    ports:
+      - ${KOTAEMON_PORT:-7860}:7860
+    environment:
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - KH_OLLAMA_URL=http://host.docker.internal:11434/v1/
+      - GRADIO_SERVER_PORT=7860 
+    extra_hosts:
+      - host.docker.internal:host-gateway      
+    # volumes:
+    #   - kotaemon:/root/.ollama
+    # ports:
+    #   - ${OLLAMA_PORT-3000}:11434
+    # extra_hosts:
+    #   - host.docker.internal:host-gateway
+    restart: unless-stopped
+
+
+volumes:
+  kotaemon: {}
