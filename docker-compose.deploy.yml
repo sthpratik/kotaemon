@@ -18,10 +18,6 @@ services:
       - host.docker.internal:host-gateway      
     # volumes:
     #   - kotaemon:/root/.ollama
-    # ports:
-    #   - ${OLLAMA_PORT-3000}:11434
-    # extra_hosts:
-    #   - host.docker.internal:host-gateway
     restart: unless-stopped
 
 
